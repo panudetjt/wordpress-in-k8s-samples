@@ -18,6 +18,16 @@ $ kubectl apply -f mysql-volumeclaim.yaml
 $ kubectl apply -f wordpress-volumeclaim.yaml
 ```
 you can see about `apply` command in [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/overview/)
+if you want to check the claims get bound just run following command.
+```Shell session
+$ kubectl get pvc
+```
+output:
+```Shell session
+NAME                    STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mysql-volumeclaim       Bound     pvc-e1c21c51-be74-11e8-950c-42010a94008f   200Gi      RWO            standard       3m
+wordpress-volumeclaim   Bound     pvc-06fec630-be75-11e8-950c-42010a94008f   200Gi      RWO            standard       2m
+```
 
 3. TODO
 
