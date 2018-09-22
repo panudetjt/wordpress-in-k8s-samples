@@ -1,18 +1,27 @@
-# install wordpress with k8s
+# Install wordpress with k8s
 This is my note from [Using Persistent Disks with WordPress and MySQL](https://cloud.google.com/kubernetes-engine/docs/tutorials/persistent-disk) google cloud tutorial. if I done something wrong feel free to correct me. I will very appreciate it.
 
 ## Instruction
 
-1. First, we need to create a Volume for storing MySQL and Wordpress data so we will create a PersistentVolumeClaim for claiming a volume to use in our pod. for describe every single line of `.yaml` file can see below.
+1. First, We need to create the cluster with following command
+```Shell Session
+$ gcloud container clusters create <Your cluster name> --num-nodes=3
+```
+> **Note**: If you are using an existing Google Kubernetes Engine cluster or if you have created a cluster through Google Cloud Platform Console, you need to run the following command to retrieve cluster credentials and configure kubectl command-line tool with them:
+```Shell Session
+$ gcloud container clusters get-credentials <Your cluster name>
+```
+> If you have already created a cluster with the gcloud container clusters create command listed above, this step is not necessary.
+2. First, we need to create a Volume for storing MySQL and Wordpress data so we will create a PersistentVolumeClaim for claiming a volume to use in our pod. for describe every single line of `.yaml` file can see below.
 ```Shell Session
 $ kubectl apply -f mysql-volumeclaim.yaml
 $ kubectl apply -f wordpress-volumeclaim.yaml
 ```
-you can see about `apply` command see in [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/overview/)
+you can see about `apply` command in [Kubernetes Object Management](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/overview/)
 
-2. TODO
+3. TODO
 
-## Describe .yaml
+## Describe .yaml (I don't know what its called)
 ### mysql-volumeclaim.yaml, wordpress-volumeclaim.yaml
 This is a definition of what [kind](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#persistentvolumeclaim-v1-core) of this file and its API version.
 ```yaml
@@ -52,3 +61,7 @@ spec:
     requests:
       storage: 200Gi
 ```
+
+# LICENSE
+mostly the content of this repository is taken from [Using Persistent Disks with WordPress and MySQL](https://cloud.google.com/kubernetes-engine/docs/tutorials/persistent-disk) that licensed under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/) and code samples are licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+I own nothing. if any word that I wrote it under license WTFPL (Do What the Fuck You Want To Public License).
